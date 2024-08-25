@@ -720,13 +720,17 @@ async def makeButtons(bot: Client, m: Message, db: dict):
 LOGCHANNEL = Config.LOGCHANNEL
 try:
     if Config.USER_SESSION_STRING is None:
-        raise KeyError
-    LOGGER.info("Starting USER Session")
-    userBot = Client(
-        name="merge-bot-user",
-        session_string=Config.USER_SESSION_STRING,
-        no_updates=True,
-    )
+       LOGGER.warning("No String Session Found")
+    else:
+       LOGGER.info("Starting USER Session")
+       userBot = Client(
+          name="UserBot",
+   api_hash=Config.API_HASH,
+          api_id=Config.TELEGRAM_API,
+          bot_token=Config.BOT_TOKEN,
+          session_string=Config.USER_SESSION_STRING,
+          no_updates=True,
+           )
 
 except KeyError:
     userBot = None
@@ -734,21 +738,18 @@ except KeyError:
 
 
 if __name__ == "__main__":
-    # with mergeApp:
-    #     bot:User = mergeApp.get_me()
-    #     bot_username = bot.username
-    try:
-        with userBot:
+   try:
+      with userBot:
             userBot.send_message(
                 chat_id=int(LOGCHANNEL),
-                text="Bot booted with Premium Account,\n\n  Thanks for using <a href='https://github.com/yashoswalyo/merge-bot'>this repo</a>",
+                text=f"""I Cᴀɴ Uᴘʟᴏᴀᴅ Uᴘᴛᴏ 4GB Nᴏᴡ... \n- Tʜᴀɴᴋs <a href='https://t.me/gkbotz'>GK Bᴏᴛᴢ</a> \n- Fʀᴏᴍ <a href='https://t.me/{Config.BOT_USERNAME}'>Mᴇʀɢᴇ Bᴏᴛ</a>""",
                 disable_web_page_preview=True,
             )
             user = userBot.get_me()
-            Config.IS_PREMIUM = user.is_premium
-    except Exception as err:
-        LOGGER.error(f"{err}")
-        Config.IS_PREMIUM = True
+            Config.IS_PREMIUM = True
+   except Exception as err:
+        LOGGER.error("start", exc_info=True)
+        Config.IS_PREMIUM = False
         pass
 
-    mergeApp.run()
+   mergeApp.run()
