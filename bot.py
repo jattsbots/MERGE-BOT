@@ -748,7 +748,7 @@ if __name__ == "__main__":
             Config.IS_PREMIUM = user.is_premium
     except Exception as err:
         LOGGER.error(f"{err}")
-        Config.IS_PREMIUM = False
+        Config.IS_PREMIUM = True
         pass
 
     mergeApp.run()
