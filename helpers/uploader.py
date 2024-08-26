@@ -27,7 +27,7 @@ async def uploadVideo(
         sent_ = None
         prog = Progress(cb.from_user.id, c, cb.message)
         async with userBot:
-            if upload_mode is False:
+            if upload_mode is True:
                 c_time = time.time()
                 sent_: Message = await userBot.send_video(
                     chat_id=int(LOGCHANNEL),
