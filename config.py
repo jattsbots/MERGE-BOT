@@ -6,6 +6,7 @@ class Config(object):
     BOT_TOKEN = os.environ.get("BOT_TOKEN")
     TELEGRAM_API = os.environ.get("TELEGRAM_API")
     OWNER = os.environ.get("OWNER")
+    BOT_USERNAME = os.environ.get("BOT_USERNAME")
     OWNER_USERNAME = os.environ.get("OWNER_USERNAME")
     PASSWORD = os.environ.get("PASSWORD")
     DATABASE_URL = os.environ.get("DATABASE_URL")
