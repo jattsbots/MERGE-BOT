@@ -140,22 +140,6 @@ chat_id=cb.from_user.id, message_ids=list_message_ids ):
         queueDB.update({cb.from_user.id: {"videos": [], "subtitles": [], "audios": []}})
         formatDB.update({cb.from_user.id: None})
         return
-    if file_size > 2044723200 and Config.IS_PREMIUM == False:
-        await cb.message.edit(
-            f"Video is Larger than 2GB Can't Upload,\n\n Tell {Config.OWNER_USERNAME} to add premium account to get 4GB TG uploads"
-        )
-        await delete_all(root=f"downloads/{str(cb.from_user.id)}")
-        queueDB.update({cb.from_user.id: {"videos": [], "subtitles": [], "audios": []}})
-        formatDB.update({cb.from_user.id: None})
-        return
-    if Config.IS_PREMIUM and file_size > 4241280205:
-        await cb.message.edit(
-            f"Video is Larger than 4GB Can't Upload,\n\n Tell {Config.OWNER_USERNAME} to die with premium account"
-        )
-        await delete_all(root=f"downloads/{str(cb.from_user.id)}")
-        queueDB.update({cb.from_user.id: {"videos": [], "subtitles": [], "audios": []}})
-        formatDB.update({cb.from_user.id: None})
-        return
     await cb.message.edit("🎥 Extracting Video Data ...")
     duration = 1
     try:
